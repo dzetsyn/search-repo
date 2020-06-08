@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { repoSearch } from './actions';
-import { Layout, Input, Typography, Pagination, Spin } from 'antd';
-import { GithubOutlined, CodeOutlined } from '@ant-design/icons';
+import { Layout, Input, Typography, Pagination, Spin, Select, Button, AutoComplete } from 'antd';
+import { GithubOutlined } from '@ant-design/icons';
 import numeral from 'numeral';
 import RepoItem from './components/RepoItem';
+import { languages } from './config';
 
 const { Header, Content, Footer } = Layout;
-const { Search } = Input;
+const { Option } = Select;
 const { Title } = Typography;
 
 
@@ -15,8 +16,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'mouse',
-      language: 'objective c'
+      text: 'Mouse',
+      language: 'Objective-C'
     }
   }
 
@@ -38,26 +39,32 @@ class App extends React.Component {
       <Layout>
 
         {/* // HEADER */}
-        <Header className="header">
+        <Header className="header" style={{ display: 'flex', alignItems: 'center' }}>
 
           {/* // SEARCH STRING */}
           <Input
+            allowClear
             prefix={<GithubOutlined />}
-            placeholder="respository search"
+            placeholder="Respository search"
             value={text}
             onChange={event => this.setState({ text: event.target.value })}
             style={{ width: '60%' }}
           />
 
           {/* // LANGUAGE */}
-          <Search
-            prefix={<CodeOutlined />}
-            placeholder="language"
+          <AutoComplete
+            allowClear
+            style={{ marginLeft: '1%', width: '28%' }}
             value={language}
-            onChange={event => this.setState({ language: event.target.value })}
-            onSearch={value => this._onClick()}
-            style={{ marginLeft: '1%', width: '39%' }}
-          />
+            placeholder="Type to search a language..."
+            onChange={language => this.setState({ language })}
+            filterOption={(inputValue, option) => option.children.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0}
+          >
+            {languages.map(l => <Option key={l} value={l}>{l}</Option>)}
+          </AutoComplete>
+
+          <Button style={{ marginLeft: '1%', width: '10%' }} onClick={event => this._onClick()}>Search</Button>
+
         </Header>
 
         {/* // MAIN CONTENT */}

@@ -7,6 +7,13 @@ import store from './store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
+  console.log = () => { };
+  console.error = () => { };
+  console.warn = () => { };
+}
+
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
