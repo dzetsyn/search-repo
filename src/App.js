@@ -15,8 +15,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'react',
-      language: 'JavaScript'
+      text: 'mouse',
+      language: 'objective c'
     }
   }
 

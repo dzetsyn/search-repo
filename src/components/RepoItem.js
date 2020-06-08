@@ -13,45 +13,53 @@ const RepoItem = props => {
     const watchers = props.watchers_count ? numeral(props.watchers_count).format('0,0') : null;
 
     return (
-        <div className="site-layout-background" style={{ padding: 20 }}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <img src={props.owner.avatar_url} style={{ borderRadius: 8 }} width={85} height={85} />
 
-            {/* // TITLE */}
-            <a href={props.html_url} target="_blank" rel="noopener noreferrer"><Title level={3}>{props.name}</Title></a>
+            <div className="site-layout-background" style={{ padding: 20 }}>
 
-            {/* // DESCRIPTION */}
-            <div>{props.description}</div>
+                {/* // TITLE */}
+                <a href={props.html_url} target="_blank" rel="noopener noreferrer"><Title level={3}>{props.name}</Title></a>
 
-            <div style={{ display: 'flex', marginTop: 10 }}>
-                {/* // STARS */}
-                {
-                    stars ?
-                        <span style={{ marginRight: 15, display: 'flex', alignItems: 'center' }}>
-                            <StarIcon />&nbsp;{stars}
-                        </span>
-                        : <div />
-                }
+                {/* // DESCRIPTION */}
+                <div>{props.description}</div>
 
-                {/* // LANGUAGE BADGE */}
-                <span style={{ marginRight: 15 }}>
-                    <Tag color="green">{props.language}</Tag>
-                </span>
+                <div style={{ display: 'flex', marginTop: 10 }}>
+                    {/* // STARS */}
+                    {
+                        stars ?
+                            <span style={{ marginRight: 15, display: 'flex', alignItems: 'center' }}>
+                                <StarIcon />&nbsp;{stars}
+                            </span>
+                            : <div />
+                    }
 
-                {/* // WATCHERS */}
-                {
-                    watchers ?
-                        <span style={{ marginRight: 15, display: 'flex', alignItems: 'center' }}>
-                            <WatchIcon />&nbsp;{watchers}
-                        </span>
-                        :
-                        <div />
-                }
+                    {/* // LANGUAGE BADGE */}
+                    {
+                        props.language ?
+                            <span style={{ marginRight: 15 }}>
+                                <Tag color="green">{props.language}</Tag>
+                            </span>
+                            : <div />
+                    }
 
-                {/* // UPDATED */}
-                <span style={{ fontSize: 12, display: 'flex', alignItems: 'center' }}>
-                    Updated {updatedDateTime}
-                </span>
+                    {/* // WATCHERS */}
+                    {
+                        watchers ?
+                            <span style={{ marginRight: 15, display: 'flex', alignItems: 'center' }}>
+                                <WatchIcon />&nbsp;{watchers}
+                            </span>
+                            :
+                            <div />
+                    }
+
+                    {/* // UPDATED */}
+                    <span style={{ fontSize: 12, display: 'flex', alignItems: 'center' }}>
+                        Updated {updatedDateTime}
+                    </span>
+                </div>
             </div>
-        </div >
+        </div>
     );
 }
 
