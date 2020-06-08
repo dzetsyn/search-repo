@@ -7,7 +7,6 @@ import numeral from 'numeral';
 import RepoItem from './components/RepoItem';
 import { languages } from './config';
 
-
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Title } = Typography;
@@ -17,8 +16,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'Mouse',
-      language: 'Objective-C'
+      text: '',
+      language: '',
+      getStarted: true
     }
   }
 
@@ -29,10 +29,11 @@ class App extends React.Component {
     const itemsPerPage = pageSize ? pageSize : this.props.itemsPerPage;
     const currentPage = page ? page : 1;
     this.props.onClick({ itemsPerPage, currentPage, text, language });
+    this.setState({ getStarted: false });
   }
 
   render() {
-    const { text, language } = this.state;
+    const { text, language, getStarted } = this.state;
     const { isLoading, repos, totalCount, itemsPerPage, currentPage } = this.props;
     const title = totalCount ? `Search (${numeral(totalCount).format('0,0')} repositories found):` : 'Search';
 
@@ -76,20 +77,23 @@ class App extends React.Component {
             <Title level={3}>{title}</Title>
             <div style={{ display: 'flex', minHeight: '300px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 
-              {/* // LOADING SPINNER */}
+              {/* // LOADING SPINNER & REPO LIST*/}
               {
                 isLoading ?
                   <Spin size="large" />
                   :
-                  repos.length === 0 ?
+                  getStarted ?
                     <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
                       <img alt='empty list' src={process.env.PUBLIC_URL + '/empty.png'} width={200} height={200} />
                       <Title level={4} style={{ color: 'grey' }}>To get started, enter repo and programming language!</Title>
                     </div>
                     :
-                    <div style={{ width: '100%' }}>
-                      {repos.map(r => <RepoItem key={r.id} {...r} />)}
-                    </div>
+                    repos.length === 0 ?
+                      <Title level={4} style={{ color: 'grey' }}>Not found</Title>
+                      :
+                      <div style={{ width: '100%' }}>
+                        {repos.map(r => <RepoItem key={r.id} {...r} />)}
+                      </div>
 
               }
 
