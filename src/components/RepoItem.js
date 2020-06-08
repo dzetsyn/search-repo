@@ -14,10 +14,10 @@ const RepoItem = props => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            {/* // AVATAR */}
             <img src={props.owner.avatar_url} style={{ borderRadius: 8 }} width={85} height={85} />
 
             <div className="site-layout-background" style={{ padding: 20 }}>
-
                 {/* // TITLE */}
                 <a href={props.html_url} target="_blank" rel="noopener noreferrer"><Title level={3}>{props.name}</Title></a>
 
