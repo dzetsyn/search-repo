@@ -7,6 +7,7 @@ import numeral from 'numeral';
 import RepoItem from './components/RepoItem';
 import { languages } from './config';
 
+
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 const { Title } = Typography;
@@ -73,14 +74,18 @@ class App extends React.Component {
 
             {/* // TITLE */}
             <Title level={3}>{title}</Title>
-            <div style={{ display: 'flex', minHeight: '280px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ display: 'flex', minHeight: '300px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 
               {/* // LOADING SPINNER */}
               {
                 isLoading ?
                   <Spin size="large" />
                   :
-                  repos.length === 0 ? <Title level={4} style={{ color: 'grey' }}>Not found</Title>
+                  repos.length === 0 ?
+                    <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
+                      <img alt='empty list' src={process.env.PUBLIC_URL + '/empty.png'} width={200} height={200} />
+                      <Title level={4} style={{ color: 'grey' }}>To get started, enter repo and programming language!</Title>
+                    </div>
                     :
                     <div style={{ width: '100%' }}>
                       {repos.map(r => <RepoItem key={r.id} {...r} />)}
