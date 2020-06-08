@@ -10,7 +10,7 @@ const { Title } = Typography;
 const RepoItem = props => {
     const updatedDateTime = dayjs(props.updated_at).format('MMM D, YYYY');
     const stars = props.stargazers_count ? numeral(props.stargazers_count).format('0,0') : null;
-    const watchers = props.watchers_count ? numeral(props.watchers_count).format('0,0') : null
+    const watchers = props.watchers_count ? numeral(props.watchers_count).format('0,0') : null;
 
     return (
         <div className="site-layout-background" style={{ padding: 20 }}>
@@ -36,6 +36,7 @@ const RepoItem = props => {
                     <Tag color="green">{props.language}</Tag>
                 </span>
 
+                {/* // WATCHERS */}
                 {
                     watchers ?
                         <span style={{ marginRight: 15, display: 'flex', alignItems: 'center' }}>
