@@ -11,12 +11,9 @@ function* repoSearch(action) {
                 page: action.currentPage,
                 per_page: action.itemsPerPage
             });
-
-        console.log({ response })
-
         yield put({ type: "REPO_SEARCH_SUCCEEDED", response, currentPage, itemsPerPage });
     } catch (e) {
-        console.error(e)
+        console.error(e);
         yield put({ type: "REPO_SEARCH_FAILED", message: e.response.data.message });
     }
 }
