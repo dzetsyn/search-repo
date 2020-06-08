@@ -1,7 +1,7 @@
 export const languages = [
     'Python',
     'Java',
-    'Javascript',
+    'JavaScript',
     'C#',
     'PHP',
     'C',

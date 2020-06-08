@@ -45,7 +45,7 @@ class App extends React.Component {
           <Input
             allowClear
             prefix={<GithubOutlined />}
-            placeholder="Respository search"
+            placeholder="Respository name"
             value={text}
             onChange={event => this.setState({ text: event.target.value })}
             style={{ width: '60%' }}
@@ -56,7 +56,7 @@ class App extends React.Component {
             allowClear
             style={{ marginLeft: '1%', width: '28%' }}
             value={language}
-            placeholder="Type to search a language..."
+            placeholder="Type to search a language"
             onChange={language => this.setState({ language })}
             filterOption={(inputValue, option) => option.children.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0}
           >
