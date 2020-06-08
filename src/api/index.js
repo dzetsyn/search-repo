@@ -11,6 +11,7 @@ const get = async (url, data) => {
                 resolve(response.data);
             })
             .catch(function (error) {
+                //console.log({ error })
                 reject(error);
             });
     });

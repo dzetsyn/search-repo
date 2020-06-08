@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.3.3",
     "axios": "^0.19.2",
+    "dayjs": "^1.8.28",
+    "numeral": "^2.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",

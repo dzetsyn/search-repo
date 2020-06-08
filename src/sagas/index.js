@@ -3,17 +3,26 @@ import * as api from '../api';
 
 
 function* repoSearch(action) {
+    const { itemsPerPage, currentPage } = action;
     try {
-        const res = yield call(api.get, '/search/repositories', { q: `${action.text}+language:${action.language}` });
-        console.log(res)
-        yield put({ type: "REPO_SEARCH_SUCCEEDED", res });
+        const response = yield call(api.get, '/search/repositories',
+            {
+                q: `${action.text}+language:${action.language}`,
+                page: action.currentPage,
+                per_page: action.itemsPerPage
+            });
+
+        console.log({ response })
+
+        yield put({ type: "REPO_SEARCH_SUCCEEDED", response, currentPage, itemsPerPage });
     } catch (e) {
-        yield put({ type: "REPO_SEARCH_FAILED", message: e.message });
+        console.error(e)
+        yield put({ type: "REPO_SEARCH_FAILED", message: e.response.data.message });
     }
 }
 
 function* rootSaga() {
-    yield takeEvery("REPO_SEARCH", repoSearch);
+    yield takeEvery('REPO_SEARCH', repoSearch);
 }
 
 
