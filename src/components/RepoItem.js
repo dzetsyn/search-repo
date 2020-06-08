@@ -3,7 +3,9 @@ import React from 'react';
 const RepoItem = props => {
 
     return (
-        <div>{props.name}</div>
+        <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
+            {props.name}
+        </div>
     );
 }
 
