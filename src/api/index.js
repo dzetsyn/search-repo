@@ -2,7 +2,6 @@ import axios from 'axios';
 
 
 const httpClient = axios.create();
-httpClient.defaults.timeout = 9000;
 httpClient.defaults.baseURL = `https://api.github.com`;
 
 const get = async (url, data) => {
